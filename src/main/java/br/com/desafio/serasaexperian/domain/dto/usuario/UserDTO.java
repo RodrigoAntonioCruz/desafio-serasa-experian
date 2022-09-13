@@ -1,4 +1,4 @@
-package br.com.desafio.serasaexperian.domain.dto.usuario.response;
+package br.com.desafio.serasaexperian.domain.dto.usuario;
 
 import br.com.desafio.serasaexperian.domain.Perfil;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserResponse implements Serializable {
+public class UserDTO implements Serializable {
     private static final long serialVersionUID = -3051421421219969734L;
 
     private String nome;

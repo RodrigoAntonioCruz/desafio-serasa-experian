@@ -19,8 +19,17 @@ import java.util.List;
 @Configuration
 @AllArgsConstructor
 public class SwaggerConfiguration {
+
     private final EnvironmentConfiguration env;
+
     public static final String USER_TAG = Constants.USER_TAG_NAME;
+
+    public static final String PERSON_TAG = Constants.PERSON_TAG_NAME;
+
+    public static final String SCORE_TAG = Constants.SCORE_TAG_NAME;
+
+    public static final String AFFINITY_TAG = Constants.AFFINITY_TAG_NAME;
+
     private ApiKey apiKey() {
         return new ApiKey(Constants.FIELD_JWT, Constants.AUTHORIZATION_HEADER, Constants.HEADER);
     }
@@ -45,7 +54,11 @@ public class SwaggerConfiguration {
                 .paths(PathSelectors.any())
                 .build()
                 .tags(
-                   new Tag(USER_TAG,  Constants.USER_TAG_DESCRIPTION)
+                    new Tag(USER_TAG, Constants.USER_TAG_DESCRIPTION),
+                    new Tag(PERSON_TAG, Constants.PERSON_TAG_DESCRIPTION),
+                    new Tag(SCORE_TAG, Constants.SCORE_TAG_DESCRIPTION),
+                    new Tag(AFFINITY_TAG, Constants.AFFINITY_TAG_DESCRIPTION),
+                    new Tag(USER_TAG, Constants.USER_TAG_DESCRIPTION)
                  );
     }
 

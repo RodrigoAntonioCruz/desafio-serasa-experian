@@ -1,4 +1,4 @@
-package br.com.desafio.serasaexperian.domain.dto.usuario.request;
+package br.com.desafio.serasaexperian.domain.dto.usuario;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class LoginRequest implements Serializable {
+public class LoginDTO implements Serializable {
 	private static final long serialVersionUID = 7086810874058978087L;
 
 	@ApiModelProperty(value = "E-mail do usuário", example = "rodrigo@msn.com", required = true, position = 1)

@@ -1,6 +1,6 @@
 package br.com.desafio.serasaexperian.validator;
 
-import br.com.desafio.serasaexperian.domain.dto.usuario.request.SignupRequest;
+import br.com.desafio.serasaexperian.domain.dto.usuario.SignupDTO;
 import br.com.desafio.serasaexperian.exception.ExceptionOf;
 import br.com.desafio.serasaexperian.exception.ExceptionResolver;
 import br.com.desafio.serasaexperian.repository.UsuarioRepository;
@@ -17,7 +17,7 @@ import static br.com.desafio.serasaexperian.util.Constants.PASSWORD_PATTERN;
 
 
 @AllArgsConstructor
-public class UserConstraintValidator implements ConstraintValidator<UserValidator, SignupRequest> {
+public class UserConstraintValidator implements ConstraintValidator<UserValidator, SignupDTO> {
     private final UsuarioRepository usuarioRepository;
     private static final Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
 
@@ -30,7 +30,7 @@ public class UserConstraintValidator implements ConstraintValidator<UserValidato
     }
 
     @Override
-    public boolean isValid(SignupRequest request, ConstraintValidatorContext context) {
+    public boolean isValid(SignupDTO request, ConstraintValidatorContext context) {
         List<ExceptionResolver> list = new ArrayList<>();
 
         if (usuarioRepository.existsByEmail(request.getEmail())) {

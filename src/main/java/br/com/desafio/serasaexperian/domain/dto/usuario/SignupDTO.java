@@ -1,4 +1,4 @@
-package br.com.desafio.serasaexperian.domain.dto.usuario.request;
+package br.com.desafio.serasaexperian.domain.dto.usuario;
 
 
 import br.com.desafio.serasaexperian.util.Constants;
@@ -20,7 +20,7 @@ import java.io.Serializable;
 @UserValidator
 @NoArgsConstructor
 @AllArgsConstructor
-public class SignupRequest implements Serializable {
+public class SignupDTO implements Serializable {
     private static final long serialVersionUID = 6016806597527015535L;
 
     @NotEmpty(message = Constants.MESSAGE_FILL + Constants.FIELD_NAME + Constants.MESSAGE_REQUIRE)

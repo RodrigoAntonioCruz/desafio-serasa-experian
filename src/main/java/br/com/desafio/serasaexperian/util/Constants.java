@@ -11,12 +11,36 @@ public class Constants {
     public static final String LENGTH_FIELD = "O tamanho deve ser entre 3 e 120 caracteres";
     public static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
 
+
+    /**
+     * CONSTANTS_STATUS_CODE_HTTP
+     */
+    public final static int STATUS_CODE_OK = 200;
+    public final static int STATUS_CODE_CREATED = 201;
+    public final static int STATUS_CODE_NO_CONTENT = 204;
+    public final static int STATUS_CODE_BAD_REQUEST = 400;
+    public final static int STATUS_CODE_UNAUTHORIZED = 401;
+    public final static int STATUS_CODE_FORBIDDEN = 403;
+    public final static int STATUS_CODE_NOT_FOUND = 404;
+    public final static int STATUS_CODE_CONFLICT = 409;
+    public final static int STATUS_CODE_INTERNAL_ERROR_SERVER = 500;
+
+
     /**
      * CONSTANTS_SWAGGER
      */
-    public static final String HEADER = "header";
-    public static final String USER_TAG_NAME = "Usuários";
+
     public static final String USER_TAG_DESCRIPTION = "Realiza o registro e autenticação de usuários na api";
+    public static final String PERSON_TAG_DESCRIPTION = "Realiza as operações referente a pessoas";
+    public static final String SCORE_TAG_DESCRIPTION = "Realiza as operações referente ao score";
+    public static final String AFFINITY_TAG_DESCRIPTION = "Realiza as operações referente a afinidade";
+
+    public static final String USER_TAG_NAME = "Usuário";
+    public static final String PERSON_TAG_NAME = "Pessoa";
+    public static final String SCORE_TAG_NAME = "Score";
+    public static final String AFFINITY_TAG_NAME = "Afinidade";
+
+    public static final String HEADER = "header";
     public static final String DESCRIPTION = "accessEverything";
     public static final String SCOPE = "global";
     public static final String FIELD_JWT = "JWT";
@@ -56,5 +80,4 @@ public class Constants {
     public static final String MESSAGE_UNSUPPORTED_JWT_TOKEN = "Token JWT não suportado";
     public static final String MESSAGE_EMPTY_JWT_TOKEN = "String JWT está vazia";
     public static final String MESSAGE_INVALID_PASSWORD = "A senha deve conter pelo menos um caractere minúsculo um caractere maiúsculo um dígito um caractere especial e um comprimento entre 8 e 20";
-
 }

@@ -13,7 +13,7 @@ import java.util.Set;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "TB_USUARIOS", uniqueConstraints = {
+@Table(name = "TB_USUARIO", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"email"})
 })
 public class Usuario implements Serializable {
@@ -21,7 +21,7 @@ public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String nome;
     private String email;
     private String senha;

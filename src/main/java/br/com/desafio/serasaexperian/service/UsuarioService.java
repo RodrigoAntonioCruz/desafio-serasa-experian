@@ -1,12 +1,11 @@
 package br.com.desafio.serasaexperian.service;
 
-import br.com.desafio.serasaexperian.domain.Perfil;
 import br.com.desafio.serasaexperian.domain.Usuario;
-import br.com.desafio.serasaexperian.domain.dto.usuario.request.LoginRequest;
-import br.com.desafio.serasaexperian.domain.dto.usuario.request.SignupRequest;
-import br.com.desafio.serasaexperian.domain.dto.usuario.response.JwtResponse;
-import br.com.desafio.serasaexperian.domain.dto.usuario.response.UserResponse;
-import br.com.desafio.serasaexperian.domain.enums.EPerfil;
+import br.com.desafio.serasaexperian.domain.dto.usuario.LoginDTO;
+import br.com.desafio.serasaexperian.domain.dto.usuario.SignupDTO;
+import br.com.desafio.serasaexperian.domain.dto.usuario.JwtDTO;
+import br.com.desafio.serasaexperian.domain.dto.usuario.UserDTO;
+import br.com.desafio.serasaexperian.domain.enums.Perfil;
 import br.com.desafio.serasaexperian.repository.UsuarioRepository;
 import br.com.desafio.serasaexperian.security.JwtTokenProvider;
 import lombok.AllArgsConstructor;
@@ -29,24 +28,21 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private AuthenticationManager authenticationManager;
 
-    public JwtResponse authenticate(LoginRequest request) {
+    public JwtDTO authenticate(LoginDTO request) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getSenha()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        return new JwtResponse(tokenProvider.generateToken(authentication));
+        return new JwtDTO(tokenProvider.generateToken(authentication));
     }
 
-    public UserResponse register(SignupRequest request) {
+    public UserDTO register(SignupDTO request) {
 
         Usuario usuario = mapper.map(request, Usuario.class);
-
         usuario.setSenha(pwd.encode(request.getSenha()));
 
-        usuario.setPerfis(Set.of(Perfil.builder().nome(String.valueOf(EPerfil.ROLE_USER)).build()));
-
-        return mapper.map(usuarioRepository.save(usuario), UserResponse.class);
+        usuario.setPerfis(Set.of(br.com.desafio.serasaexperian.domain.Perfil.builder().nome(String.valueOf(Perfil.ROLE_USER)).build()));
+        return mapper.map(usuarioRepository.save(usuario), UserDTO.class);
     }
 }

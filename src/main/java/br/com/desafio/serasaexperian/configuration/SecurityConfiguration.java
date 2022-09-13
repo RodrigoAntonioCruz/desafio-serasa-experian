@@ -50,7 +50,7 @@ public class SecurityConfiguration {
     };
 
     private static final String[] PUBLIC_MATCHERS_POST = {
-            "/usuarios/**"
+            "/usuario/**"
     };
 
     @Bean
