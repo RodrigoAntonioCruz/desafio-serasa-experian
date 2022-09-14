@@ -1,7 +1,7 @@
 package br.com.desafio.serasaexperian.security;
 
 import br.com.desafio.serasaexperian.configuration.EnvironmentConfiguration;
-import br.com.desafio.serasaexperian.exception.ExceptionOf;
+import br.com.desafio.serasaexperian.util.Constants;
 import io.jsonwebtoken.*;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,19 +43,19 @@ public class JwtTokenProvider {
             return true;
         } catch (SecurityException e) {
             log.error("Assinatura JWT inválida: {}", e.getMessage());
-            throw ExceptionOf.INVALID_JWT_SIGNATURE.message();
+            throw new SecurityException(Constants.MESSAGE_INVALID_JWT_SIGNATURE);
         } catch (MalformedJwtException e) {
             log.error("Token JWT inválido: {}", e.getMessage());
-            throw ExceptionOf.INVALID_JWT_TOKEN.message();
+            throw new SecurityException(Constants.MESSAGE_INVALID_JWT_TOKEN);
         } catch (ExpiredJwtException e) {
             log.error("Token JWT expirou: {}", e.getMessage());
-            throw ExceptionOf.EXPIRED_JWT_TOKEN.message();
+            throw new SecurityException(Constants.MESSAGE_EXPIRED_JWT_TOKEN);
         } catch (UnsupportedJwtException e) {
             log.error("Token JWT é incompatível: {}", e.getMessage());
-            throw ExceptionOf.UNSUPPORTED_JWT_TOKEN.message();
+            throw new SecurityException(Constants.MESSAGE_UNSUPPORTED_JWT_TOKEN);
         } catch (IllegalArgumentException e) {
             log.error("String JWT está vazia: {}", e.getMessage());
-            throw ExceptionOf.EMPTY_JWT_TOKEN.message();
+            throw new SecurityException(Constants.MESSAGE_EMPTY_JWT_TOKEN);
         }
     }
 }

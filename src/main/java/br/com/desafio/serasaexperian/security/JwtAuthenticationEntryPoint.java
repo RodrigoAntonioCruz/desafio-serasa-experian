@@ -1,5 +1,6 @@
 package br.com.desafio.serasaexperian.security;
 
+import br.com.desafio.serasaexperian.exception.StandardError;
 import br.com.desafio.serasaexperian.util.Constants;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
@@ -9,12 +10,10 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static br.com.desafio.serasaexperian.exception.BusinessException.of;
 
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, AccessDeniedHandler {
@@ -24,8 +23,8 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Ac
         response.setContentType("application/json;charset=UTF-8");
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.getWriter().write(new ObjectMapper().writeValueAsString(
-                        of(HttpStatus.UNAUTHORIZED.value(), Constants.ERROR_UNAUTHORIZED, Constants.MESSAGE_UNAUTHORIZED, request.getRequestURI())
-                )
+                   new StandardError(System.currentTimeMillis(), HttpStatus.UNAUTHORIZED.value(), Constants.ERROR_UNAUTHORIZED, Constants.MESSAGE_UNAUTHORIZED, request.getRequestURI())
+             )
         );
     }
 
@@ -34,8 +33,8 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Ac
         response.setContentType("application/json;charset=UTF-8");
         response.setStatus(HttpStatus.FORBIDDEN.value());
         response.getWriter().write(new ObjectMapper().writeValueAsString(
-                        of(HttpStatus.FORBIDDEN.value(), Constants.ERROR_FORBIDDEN, Constants.MESSAGE_FORBIDDEN, request.getRequestURI())
-                )
+                  new StandardError(System.currentTimeMillis(), HttpStatus.FORBIDDEN.value(), Constants.ERROR_FORBIDDEN, Constants.MESSAGE_FORBIDDEN, request.getRequestURI())
+            )
         );
     }
 }

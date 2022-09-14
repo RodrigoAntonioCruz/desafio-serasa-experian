@@ -54,7 +54,7 @@ public class PessoaServiceTest extends ScenarioFactory {
 
         when(ReflectionTestUtils.invokeMethod(pessoaService, "getRegion", PESSOA)).thenReturn(AFINIDADE_DTO.getEstados());
 
-        when(pessoaRepository.save(PESSOA)).thenThrow(new RuntimeException(Constants.ERROR_VALIDATION));
+
     }
 
     @Test
@@ -111,6 +111,8 @@ public class PessoaServiceTest extends ScenarioFactory {
     public void when_registering_empty_or_null_person_field_return_exception() {
         PESSOA_DTO.setNome(null);
         PESSOA_DTO.setScore(null);
+
+     //   when(pessoaRepository.save(PESSOA)).thenThrow();
 
         var exception = Assertions.assertThrows(RuntimeException.class,() -> {
             pessoaService.create(PESSOA_DTO);

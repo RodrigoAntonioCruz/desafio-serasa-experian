@@ -6,6 +6,8 @@ import br.com.desafio.serasaexperian.domain.dto.pessoa.PessoaGetAllDTO;
 import br.com.desafio.serasaexperian.domain.dto.pessoa.PessoaGetByIdDTO;
 import br.com.desafio.serasaexperian.domain.enums.Regiao;
 import br.com.desafio.serasaexperian.domain.enums.UF;
+import br.com.desafio.serasaexperian.exception.ObjectNoContent;
+import br.com.desafio.serasaexperian.exception.ObjectNotFoundException;
 import br.com.desafio.serasaexperian.repository.PessoaRepository;
 import br.com.desafio.serasaexperian.util.Constants;
 import lombok.RequiredArgsConstructor;
@@ -55,11 +57,11 @@ public class PessoaService {
         log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_CLASS + Constants.LOG_KEY_METHOD,
                 Constants.LOG_MSG_FIND_BY_ID_PERSON + id, Constants.LOG_CLASS_PERSON_SERVICE, Constants.LOG_METHOD_FIND_BY_ID);
 
-        var pessoaOptional = pessoaRepository.findById(id);
+        var pessoaOptional = pessoaRepository.findById(id).orElseThrow(ObjectNoContent::new);
         var pessoa = mapper.map(pessoaOptional, PessoaGetByIdDTO.class);
 
-        pessoa.setEstados(getRegion(pessoaOptional.get()));
-        pessoa.setScoreDescricao(getScore(pessoaOptional.get()));
+        pessoa.setEstados(getRegion(pessoaOptional));
+        pessoa.setScoreDescricao(getScore(pessoaOptional));
 
         return pessoa;
     }

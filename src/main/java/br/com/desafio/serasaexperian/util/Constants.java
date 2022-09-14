@@ -140,9 +140,10 @@ public class Constants {
     public static final String ERROR_VALIDATION = "Erro de validação";
     public static final String ERROR_FORBIDDEN = "Acesso proibido";
     public static final String ERROR_UNAUTHORIZED = "Não autorizado";
-    public static final String ERROR_DUPLICATED_EMAIL = "Conflito de e-mail";
+    public static final String ERROR_DUPLICATED_EMAIL = "Conflito, o e-mail informado já está em uso";
     public static final String ERROR_INVALID_PROFILE = "Perfil inválido";
     public static final String ERROR_INVALID_PASSWORD = "Senha inválida";
+    public static final String ERROR_NO_CONTENT = "Sem conteúdo";
 
     /**
      * CONSTANTS_MESSAGES
@@ -151,6 +152,7 @@ public class Constants {
     public static final String MESSAGE_REQUIRE = " é obrigatório";
     public static final String MESSAGE_INVALID_CREDENTIALS = "Credenciais inválidas";
     public static final String MESSAGE_NOT_FOUND = "Não encontrado";
+    public static final String MESSAGE_NO_CONTENT = "Nenhum conteúdo para ser visto";
     public static final String MESSAGE_UNAUTHORIZED = "Você não possui credenciais válidas para acessar este recurso";
     public static final String MESSAGE_FORBIDDEN = "Você não possui permissão para acessar este recurso";
     public static final String MESSAGE_INVALID_PROFILE = "O tipo de perfil informado é inválido";
@@ -160,6 +162,9 @@ public class Constants {
     public static final String MESSAGE_EXPIRED_JWT_TOKEN = "Token JWT expirou";
     public static final String MESSAGE_UNSUPPORTED_JWT_TOKEN = "Token JWT não suportado";
     public static final String MESSAGE_EMPTY_JWT_TOKEN = "String JWT está vazia";
-    public static final String MESSAGE_INVALID_DATA = "Dados não processados devido a solicitação incorreta";
+    public static final String MESSAGE_INVALID_DATA = "Dados não processados";
     public static final String MESSAGE_INVALID_PASSWORD = "A senha deve conter pelo menos um caractere minúsculo um caractere maiúsculo um dígito um caractere especial e um comprimento entre 8 e 20";
+    public static final String MESSAGE_NOT_FOUND_STATES_AFFINITY_BY_REGION = "Estados de affindade por região não encontrados";
+    public static final String MESSAGE_NOT_FOUND_SCORE_DESCRIPTION = "Score não encontrado";
+
 }

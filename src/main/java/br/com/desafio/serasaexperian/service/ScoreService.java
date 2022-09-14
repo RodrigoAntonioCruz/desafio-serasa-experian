@@ -2,6 +2,7 @@ package br.com.desafio.serasaexperian.service;
 
 import br.com.desafio.serasaexperian.domain.Score;
 import br.com.desafio.serasaexperian.domain.dto.score.ScoreDTO;
+import br.com.desafio.serasaexperian.exception.ObjectNotFoundException;
 import br.com.desafio.serasaexperian.repository.ScoreRepository;
 import br.com.desafio.serasaexperian.util.Constants;
 import lombok.RequiredArgsConstructor;
@@ -37,8 +38,6 @@ public class ScoreService {
         log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_CLASS + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_SCORE,
                 Constants.LOG_MSG_GET_SCORE_DESCRIPTION, Constants.LOG_CLASS_SCORE_SERVICE, Constants.LOG_METHOD_GET_SCORE_DESCRIPTION, score);
 
-        Optional<Score> scoreOptional = Optional.of(scoreRepository.findScoreBetweenInitialAndFinalValue(score)
-                .orElseThrow());
-        return scoreOptional.get().getDescricao();
+       return scoreRepository.findScoreBetweenInitialAndFinalValue(score).get().getDescricao();
     }
 }

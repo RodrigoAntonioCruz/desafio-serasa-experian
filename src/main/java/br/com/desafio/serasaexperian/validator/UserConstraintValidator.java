@@ -1,9 +1,9 @@
 package br.com.desafio.serasaexperian.validator;
 
 import br.com.desafio.serasaexperian.domain.dto.usuario.SignupDTO;
-import br.com.desafio.serasaexperian.exception.ExceptionOf;
-import br.com.desafio.serasaexperian.exception.ExceptionResolver;
+import br.com.desafio.serasaexperian.exception.FieldMessage;
 import br.com.desafio.serasaexperian.repository.UsuarioRepository;
+import br.com.desafio.serasaexperian.util.Constants;
 import lombok.AllArgsConstructor;
 
 import javax.validation.ConstraintValidator;
@@ -31,20 +31,20 @@ public class UserConstraintValidator implements ConstraintValidator<UserValidato
 
     @Override
     public boolean isValid(SignupDTO request, ConstraintValidatorContext context) {
-        List<ExceptionResolver> list = new ArrayList<>();
+        List<FieldMessage> list = new ArrayList<>();
 
         if (usuarioRepository.existsByEmail(request.getEmail())) {
-            list.add(new ExceptionResolver("email", ExceptionOf.DUPLICATED_EMAIL.getMessage()));
+            list.add(new FieldMessage("email", Constants.MESSAGE_DUPLICATED_EMAIL));
         }
 
         if (!validPassword(request.getSenha())){
-            list.add(new ExceptionResolver("senha", ExceptionOf.INVALID_PASSWORD.getMessage()));
+            list.add(new FieldMessage("senha", Constants.MESSAGE_INVALID_PASSWORD));
         }
 
-        for (ExceptionResolver e : list) {
+        for (FieldMessage e : list) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate(e.getMessage())
-                   .addPropertyNode(e.getField()).addConstraintViolation();
+            context.buildConstraintViolationWithTemplate(e.getMessage()).addPropertyNode(e.getFieldName())
+                    .addConstraintViolation();
         }
         return list.isEmpty();
     }
