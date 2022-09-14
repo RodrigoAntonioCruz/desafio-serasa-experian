@@ -26,7 +26,6 @@ Desenvolver uma `API REST` 	para cadastro de `pessoas` com `score` e suas `regi√
   <li> H2-database
   <li> ModelMapper	
   <li> Validation
-  <li> Hibernate
   <li> JWT	
   <li> JUnit
 </ul>
