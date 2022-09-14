@@ -1,7 +1,7 @@
 <h3 align="center">
   <img align="center" alt="LOGO SERASA EXPERIAN"  height="100" src="https://www.serasaexperian.com.br/images-cms/wp-content/uploads/2022/08/logo-serasa-experian-color-1.png.webp" /><br>
   DESAFIO BACKEND SERASA EXPERIAN
-</h3>
+</h3> <br>
 
 
 ### Contexto do Desafio
@@ -38,20 +38,22 @@ Para rodar esta aplicação, você deve ter instalado em seu computador:
 
 <ul> 
    <li><a href="https://www.azul.com/downloads/?package=jdk" target="_blank">Java 11 (LTS)</a>
+   <li><a href="https://maven.apache.org/install.html" target="_blank">Apache Maven</a>
 </ul> 
 
 ### Executando o projeto
 
 1. Clone ou baixe o projeto do repositório para o seu `Computador`.
 
-2. Navegue até a raíz do seu diretório onde salvou ou clonou o projeto, abra o `terminal e execute em sequencia os comandos:`
+2. Navegue até a raíz do seu diretório onde salvou ou clonou o projeto, abra o `terminal e execute os seguintes comandos:`
 <ul> 
    <li> sudo mvn clean install
+   <li> sudo mvn spring-boot:run
 </ul>
 
-3. Após a execução dos passos anteriores, estará disponível para acesso em seu browser a documentação `swagger` no endpoint:
+3. Após a execução dos passos anteriores, estarão disponíveis para acesso em seu browser a documentação `swagger` e o console do `banco de dados H2` nos links abaixo:
 
 <ul> 
-  <li><a href="http://localhost:8887/api/v1/swagger-ui/#/" target="_blank">API-REST-DESAFIO-SERASA EXPERIAN</a>
-</ul> 
-
+  <li><a href="http://localhost:8887/api/v1/swagger-ui/#/" target="_blank">ENDPOINT-API-REST</a>
+  <li><a href="http://localhost:8887/api/v1/h2-console" target="_blank">ENDPOINT-H2-DB</a>  
+</ul>
