@@ -1,9 +1,9 @@
 package br.com.desafio.serasaexperian.controller;
 
 import br.com.desafio.serasaexperian.configuration.SwaggerConfiguration;
+import br.com.desafio.serasaexperian.domain.dto.usuario.JwtDTO;
 import br.com.desafio.serasaexperian.domain.dto.usuario.LoginDTO;
 import br.com.desafio.serasaexperian.domain.dto.usuario.SignupDTO;
-import br.com.desafio.serasaexperian.domain.dto.usuario.JwtDTO;
 import br.com.desafio.serasaexperian.domain.dto.usuario.UserDTO;
 import br.com.desafio.serasaexperian.service.UsuarioService;
 import br.com.desafio.serasaexperian.util.Constants;
@@ -14,7 +14,10 @@ import io.swagger.annotations.ApiResponses;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -37,8 +40,7 @@ public class UsuarioController {
     })
     @ApiOperation(value = "Registra um novo usuário")
     public ResponseEntity<UserDTO> register(@Valid @RequestBody SignupDTO signUpDTO) {
-        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_CLASS + Constants.LOG_KEY_METHOD ,
-                Constants.LOG_MSG_START_REGISTER_USER, Constants.LOG_CLASS_USER_CONTROLLER, Constants.LOG_METHOD_REGISTER);
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_METHOD, Constants.LOG_MSG_START_REGISTER_USER, Constants.LOG_METHOD_REGISTER);
 
         return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
                 .buildAndExpand(signUpDTO).toUri()).body(usuarioService.register(signUpDTO));
@@ -53,8 +55,7 @@ public class UsuarioController {
     })
     @ApiOperation(value = "Autentica um usuário existente")
     public ResponseEntity<JwtDTO> authenticate(@RequestBody LoginDTO loginDTO) {
-        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_CLASS + Constants.LOG_KEY_METHOD ,
-                Constants.LOG_MSG_START_AUTHENTICATE_USER, Constants.LOG_CLASS_USER_CONTROLLER, Constants.LOG_METHOD_AUTHENTICATE);
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_METHOD, Constants.LOG_MSG_START_AUTHENTICATE_USER, Constants.LOG_METHOD_AUTHENTICATE);
 
         return ResponseEntity.ok(usuarioService.authenticate(loginDTO));
     }

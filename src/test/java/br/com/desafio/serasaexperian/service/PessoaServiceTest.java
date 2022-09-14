@@ -1,9 +1,9 @@
 package br.com.desafio.serasaexperian.service;
 
 import br.com.desafio.serasaexperian.domain.Pessoa;
-import br.com.desafio.serasaexperian.domain.dto.pessoa.PessoaGetByIdDTO;
 import br.com.desafio.serasaexperian.domain.enums.Regiao;
 import br.com.desafio.serasaexperian.factory.ScenarioFactory;
+import br.com.desafio.serasaexperian.repository.PessoaRepository;
 import br.com.desafio.serasaexperian.util.Constants;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
@@ -25,12 +26,20 @@ public class PessoaServiceTest extends ScenarioFactory {
     @InjectMocks
     private PessoaService pessoaService;
 
+    @Mock
+    private ScoreService scoreService;
+
+    @Mock
+    private AfinidadeService afinidadeService;
+    @Mock
+    protected PessoaRepository pessoaRepository;
+
     @Before
     public void setup() {
 
-        SCORE_DTO = getScore();
+        SCORE_DTO = getScoreDTO();
 
-        AFINIDADE_DTO = getAfinidade();
+        AFINIDADE_DTO = getAfinidadeDTO();
 
         PESSOA = getPessoa();
 
@@ -48,8 +57,6 @@ public class PessoaServiceTest extends ScenarioFactory {
 
         when(pessoaRepository.findById(PESSOA.getId())).thenReturn(Optional.ofNullable(PESSOA));
 
-        when(mapper.map(Optional.ofNullable(PESSOA), PessoaGetByIdDTO.class)).thenReturn(PESSOA_GET_BY_ID_DTO);
-
         when(ReflectionTestUtils.invokeMethod(pessoaService, "getScore", PESSOA)).thenReturn(SCORE_DTO.getScoreDescricao());
 
         when(ReflectionTestUtils.invokeMethod(pessoaService, "getRegion", PESSOA)).thenReturn(AFINIDADE_DTO.getEstados());
@@ -59,7 +66,7 @@ public class PessoaServiceTest extends ScenarioFactory {
 
     @Test
     @DisplayName("Testa o cadastro de uma pessoa com sucesso")
-    public void when_registering_person_return_success(){
+    public void when_register_person_return_success(){
 
         var pessoa = pessoaService.create(PESSOA_DTO);
 
@@ -108,11 +115,11 @@ public class PessoaServiceTest extends ScenarioFactory {
 
     @Test
     @DisplayName("Testa o retorno de uma exceção ao cadastrar uma pessoa com campos nulos")
-    public void when_registering_empty_or_null_person_field_return_exception() {
+    public void when_register_empty_or_null_person_field_return_exception() {
         PESSOA_DTO.setNome(null);
         PESSOA_DTO.setScore(null);
 
-     //   when(pessoaRepository.save(PESSOA)).thenThrow();
+        when(pessoaRepository.save(PESSOA)).thenThrow(EXCEPTION);
 
         var exception = Assertions.assertThrows(RuntimeException.class,() -> {
             pessoaService.create(PESSOA_DTO);
@@ -120,6 +127,6 @@ public class PessoaServiceTest extends ScenarioFactory {
 
         verify(pessoaRepository, times(1)).save(PESSOA);
 
-        assertEquals(Constants.ERROR_VALIDATION, exception.getMessage());
+        assertEquals(Constants.MESSAGE_INVALID_DATA, exception.getMessage());
     }
 }

@@ -105,6 +105,7 @@ public class Constants {
     public final static int STATUS_CODE_FORBIDDEN = 403;
     public final static int STATUS_CODE_NOT_FOUND = 404;
     public final static int STATUS_CODE_CONFLICT = 409;
+    public final static int STATUS_CODE_UNPROCESSABLE_ENTITY = 422;
     public final static int STATUS_CODE_INTERNAL_ERROR_SERVER = 500;
 
 
@@ -128,9 +129,11 @@ public class Constants {
     public static final String API_RESPONSE_CREATED = "Cadastrado com sucesso!";
     public static final String API_RESPONSE_OK = "Login efetuado com sucesso!";
     public static final String API_RESPONSE_BAD_REQUEST = "Dados não processados devido a solicitação incorreta ou falta de informações.";
+
+    public static final String API_RESPONSE_UNPROCESSABLE_ENTITY = "Os dados não podem ser processados devido a solicitação incorreta.";
     public static final String API_RESPONSE_UNAUTHORIZED = "Acesso não autorizado!";
     public static final String API_RESPONSE_INTERNAL_ERROR_SERVER = "Sistema indisponível";
-
+    public static final String API_RESPONSE_NO_CONTENT = "Sem conteúdo";
 
     /**
      * CONSTANTS_ERRORS
@@ -166,5 +169,6 @@ public class Constants {
     public static final String MESSAGE_INVALID_PASSWORD = "A senha deve conter pelo menos um caractere minúsculo um caractere maiúsculo um dígito um caractere especial e um comprimento entre 8 e 20";
     public static final String MESSAGE_NOT_FOUND_STATES_AFFINITY_BY_REGION = "Estados de affindade por região não encontrados";
     public static final String MESSAGE_NOT_FOUND_SCORE_DESCRIPTION = "Score não encontrado";
+
 
 }

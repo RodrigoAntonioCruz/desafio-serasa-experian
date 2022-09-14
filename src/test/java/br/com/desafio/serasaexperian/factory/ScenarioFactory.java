@@ -1,6 +1,8 @@
 package br.com.desafio.serasaexperian.factory;
 
+import br.com.desafio.serasaexperian.domain.Afinidade;
 import br.com.desafio.serasaexperian.domain.Pessoa;
+import br.com.desafio.serasaexperian.domain.Score;
 import br.com.desafio.serasaexperian.domain.dto.afinidade.AfinidadeDTO;
 import br.com.desafio.serasaexperian.domain.dto.pessoa.PessoaDTO;
 import br.com.desafio.serasaexperian.domain.dto.pessoa.PessoaGetAllDTO;
@@ -8,33 +10,26 @@ import br.com.desafio.serasaexperian.domain.dto.pessoa.PessoaGetByIdDTO;
 import br.com.desafio.serasaexperian.domain.dto.score.ScoreDTO;
 import br.com.desafio.serasaexperian.domain.enums.Regiao;
 import br.com.desafio.serasaexperian.domain.enums.UF;
-import br.com.desafio.serasaexperian.repository.PessoaRepository;
-import br.com.desafio.serasaexperian.service.AfinidadeService;
-import br.com.desafio.serasaexperian.service.ScoreService;
-import org.mockito.Mock;
+import br.com.desafio.serasaexperian.util.Constants;
 import org.mockito.Spy;
 import org.modelmapper.ModelMapper;
 
 import java.util.Set;
 
 public class ScenarioFactory {
-
-    @Mock
-    private ScoreService scoreService;
-    @Mock
-    private AfinidadeService afinidadeService;
-    @Mock
-    protected PessoaRepository pessoaRepository;
     @Spy
     protected ModelMapper mapper;
     protected static PessoaDTO PESSOA_DTO;
     protected static PessoaGetAllDTO PESSOA_GET_ALL_DTO;
     protected static PessoaGetByIdDTO PESSOA_GET_BY_ID_DTO;
     protected static Pessoa PESSOA;
+    protected static Score SCORE;
     protected static ScoreDTO SCORE_DTO;
+    protected static Afinidade AFINIDADE;
     protected static AfinidadeDTO AFINIDADE_DTO;
 
-    public ScoreDTO getScore(){
+    protected RuntimeException EXCEPTION = new RuntimeException(Constants.MESSAGE_INVALID_DATA);
+    public ScoreDTO getScoreDTO(){
         return ScoreDTO.builder()
                 .scoreDescricao("Inaceitável")
                 .valorInicial(201)
@@ -42,9 +37,24 @@ public class ScenarioFactory {
                 .build();
     }
 
-    public AfinidadeDTO getAfinidade(){
+    public AfinidadeDTO getAfinidadeDTO(){
         return AfinidadeDTO.builder()
-                .regiao("sul")
+                .regiao("sudeste")
+                .estados(Set.of(UF.RJ, UF.SP, UF.MG, UF.ES))
+                .build();
+    }
+
+    public Score getScore(){
+        return Score.builder()
+                .descricao("Inaceitável")
+                .valorInicial(201)
+                .valorFinal(500)
+                .build();
+    }
+
+    public Afinidade getAfinidade(){
+        return Afinidade.builder()
+                .regiao(Regiao.SUDESTE)
                 .estados(Set.of(UF.RJ, UF.SP, UF.MG, UF.ES))
                 .build();
     }

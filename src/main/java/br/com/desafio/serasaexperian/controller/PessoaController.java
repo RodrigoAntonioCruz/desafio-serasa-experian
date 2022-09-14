@@ -31,14 +31,13 @@ public class PessoaController {
     @PostMapping
     @ApiResponses(value = {
             @ApiResponse(code = Constants.STATUS_CODE_CREATED, message = Constants.API_RESPONSE_CREATED),
-            @ApiResponse(code = Constants.STATUS_CODE_BAD_REQUEST, message = Constants.API_RESPONSE_BAD_REQUEST),
+            @ApiResponse(code = Constants.STATUS_CODE_UNPROCESSABLE_ENTITY, message = Constants.API_RESPONSE_UNPROCESSABLE_ENTITY),
             @ApiResponse(code = Constants.STATUS_CODE_UNAUTHORIZED, message = Constants.API_RESPONSE_UNAUTHORIZED),
             @ApiResponse(code = Constants.STATUS_CODE_INTERNAL_ERROR_SERVER, message = Constants.API_RESPONSE_INTERNAL_ERROR_SERVER)
     })
     @ApiOperation(value = "Cadastra uma nova pessoa")
     public ResponseEntity<PessoaDTO> create(@Valid @RequestBody PessoaDTO pessoaDTO) {
-        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_CLASS + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_ENTITY,
-                Constants.LOG_MSG_START_CREATE_PERSON, Constants.LOG_CLASS_PERSON_CONTROLLER, Constants.LOG_METHOD_CREATE, pessoaDTO);
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_ENTITY, Constants.LOG_MSG_START_CREATE_PERSON, Constants.LOG_METHOD_CREATE, pessoaDTO);
 
         return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
                 .buildAndExpand(pessoaDTO).toUri()).body(pessoaService.create(pessoaDTO));
@@ -49,13 +48,12 @@ public class PessoaController {
     @ApiOperation("Lista todas as pessoas")
     @ApiResponses(value = {
             @ApiResponse(code = Constants.STATUS_CODE_OK, message = Constants.API_RESPONSE_OK),
-            @ApiResponse(code = Constants.STATUS_CODE_BAD_REQUEST, message = Constants.API_RESPONSE_BAD_REQUEST),
+            @ApiResponse(code = Constants.STATUS_CODE_UNPROCESSABLE_ENTITY, message = Constants.API_RESPONSE_UNPROCESSABLE_ENTITY),
             @ApiResponse(code = Constants.STATUS_CODE_UNAUTHORIZED, message = Constants.API_RESPONSE_UNAUTHORIZED),
             @ApiResponse(code = Constants.STATUS_CODE_INTERNAL_ERROR_SERVER, message = Constants.API_RESPONSE_INTERNAL_ERROR_SERVER)
     })
     public ResponseEntity<List<PessoaGetAllDTO>> findAll() {
-        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_CLASS + Constants.LOG_KEY_METHOD,
-                Constants.LOG_MSG_START_CREATE_PERSON,Constants.LOG_CLASS_PERSON_CONTROLLER, Constants.LOG_METHOD_FIND_ALL);
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_METHOD, Constants.LOG_MSG_START_CREATE_PERSON, Constants.LOG_METHOD_FIND_ALL);
 
         return ResponseEntity.ok().body(pessoaService.findAll());
     }
@@ -64,13 +62,13 @@ public class PessoaController {
     @ApiOperation(value = "Lista uma pessoa por id")
     @ApiResponses(value = {
             @ApiResponse(code = Constants.STATUS_CODE_OK, message = Constants.API_RESPONSE_OK),
-            @ApiResponse(code = Constants.STATUS_CODE_BAD_REQUEST, message = Constants.API_RESPONSE_BAD_REQUEST),
+            @ApiResponse(code = Constants.STATUS_CODE_NO_CONTENT, message = Constants.API_RESPONSE_NO_CONTENT),
+            @ApiResponse(code = Constants.STATUS_CODE_UNPROCESSABLE_ENTITY, message = Constants.API_RESPONSE_UNPROCESSABLE_ENTITY),
             @ApiResponse(code = Constants.STATUS_CODE_UNAUTHORIZED, message = Constants.API_RESPONSE_UNAUTHORIZED),
             @ApiResponse(code = Constants.STATUS_CODE_INTERNAL_ERROR_SERVER, message = Constants.API_RESPONSE_INTERNAL_ERROR_SERVER)
     })
     public ResponseEntity<PessoaGetByIdDTO> findById(@PathVariable Long id) {
-        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_CLASS + Constants.LOG_KEY_METHOD,
-                Constants.LOG_MSG_FIND_BY_ID_PERSON + id, Constants.LOG_CLASS_PERSON_CONTROLLER, Constants.LOG_METHOD_FIND_BY_ID);
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_METHOD, Constants.LOG_MSG_FIND_BY_ID_PERSON + id,  Constants.LOG_METHOD_FIND_BY_ID);
 
         return ResponseEntity.ok().body(pessoaService.findById(id));
     }
