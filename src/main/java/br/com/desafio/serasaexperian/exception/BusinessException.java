@@ -20,6 +20,7 @@ public class BusinessException extends RuntimeException {
     private String message;
     private String path;
 
+
     public static BusinessExceptionBody of(int status, String error, String message, String path) {
         return BusinessExceptionBody.builder().timestamp(System.currentTimeMillis()).status(status).error(error).message(String.format(message)).path(path).build();
     }

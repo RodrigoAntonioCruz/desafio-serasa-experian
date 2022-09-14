@@ -42,6 +42,9 @@ public class ScoreController {
     })
     @ApiOperation(value = "Cadastra um novo Score")
     public ResponseEntity<ScoreDTO> create(@Valid @RequestBody ScoreDTO scoreDTO) {
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_CLASS + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_ENTITY,
+                Constants.LOG_MSG_START_CREATE_SCORE, Constants.LOG_CLASS_SCORE_CONTROLLER, Constants.LOG_METHOD_CREATE, scoreDTO);
+
         return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
                 .buildAndExpand(scoreDTO).toUri()).body(scoreService.create(scoreDTO));
     }

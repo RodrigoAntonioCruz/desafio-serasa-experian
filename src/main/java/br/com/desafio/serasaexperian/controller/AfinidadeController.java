@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
+
 @Slf4j
 @RestController
 @AllArgsConstructor
@@ -33,8 +35,11 @@ public class AfinidadeController {
             @ApiResponse(code = Constants.STATUS_CODE_UNAUTHORIZED, message = Constants.API_RESPONSE_UNAUTHORIZED),
             @ApiResponse(code = Constants.STATUS_CODE_INTERNAL_ERROR_SERVER, message = Constants.API_RESPONSE_INTERNAL_ERROR_SERVER)
     })
-    @ApiOperation(value = "Cadastra uma afinidade")
-    public ResponseEntity<AfinidadeDTO> create(@RequestBody AfinidadeDTO afinidadeDTO) {
+    @ApiOperation(value = "Cadastra uma nova afinidade")
+    public ResponseEntity<AfinidadeDTO> create(@Valid  @RequestBody AfinidadeDTO afinidadeDTO) {
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_CLASS + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_ENTITY,
+                Constants.LOG_MSG_START_CREATE_AFFINITY, Constants.LOG_CLASS_AFFINITY_CONTROLLER, Constants.LOG_METHOD_CREATE, afinidadeDTO);
+
         return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
                 .buildAndExpand(afinidadeDTO).toUri()).body(afinidadeService.create(afinidadeDTO));
     }

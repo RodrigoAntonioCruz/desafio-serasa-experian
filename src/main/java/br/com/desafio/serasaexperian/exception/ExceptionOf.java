@@ -15,6 +15,7 @@ public enum ExceptionOf {
 
     FORBIDDEN(HttpStatus.FORBIDDEN.value() + "," + Constants.ERROR_FORBIDDEN + "," + Constants.MESSAGE_FORBIDDEN),
     DUPLICATED_EMAIL(HttpStatus.CONFLICT.value() + "," + Constants.ERROR_DUPLICATED_EMAIL + "," + Constants.MESSAGE_DUPLICATED_EMAIL),
+
     INVALID_PROFILE(HttpStatus.BAD_REQUEST.value() + "," + Constants.ERROR_INVALID_PROFILE + "," + Constants.MESSAGE_INVALID_PROFILE),
     INVALID_PASSWORD(HttpStatus.BAD_REQUEST.value() + "," + Constants.ERROR_INVALID_PASSWORD + "," + Constants.MESSAGE_INVALID_PASSWORD),
     INVALID_JWT_SIGNATURE(HttpStatus.BAD_REQUEST.value() + "," + Constants.ERROR_VALIDATION + "," + Constants.MESSAGE_INVALID_JWT_SIGNATURE),

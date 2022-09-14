@@ -36,7 +36,10 @@ public class UsuarioController {
             @ApiResponse(code = Constants.STATUS_CODE_INTERNAL_ERROR_SERVER, message = Constants.API_RESPONSE_INTERNAL_ERROR_SERVER)
     })
     @ApiOperation(value = "Registra um novo usuário")
-    public ResponseEntity<UserDTO> registerUser(@Valid @RequestBody SignupDTO signUpDTO) {
+    public ResponseEntity<UserDTO> register(@Valid @RequestBody SignupDTO signUpDTO) {
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_CLASS + Constants.LOG_KEY_METHOD ,
+                Constants.LOG_MSG_START_REGISTER_USER, Constants.LOG_CLASS_USER_CONTROLLER, Constants.LOG_METHOD_REGISTER);
+
         return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
                 .buildAndExpand(signUpDTO).toUri()).body(usuarioService.register(signUpDTO));
     }
@@ -49,7 +52,10 @@ public class UsuarioController {
             @ApiResponse(code = Constants.STATUS_CODE_INTERNAL_ERROR_SERVER, message = Constants.API_RESPONSE_INTERNAL_ERROR_SERVER)
     })
     @ApiOperation(value = "Autentica um usuário existente")
-    public ResponseEntity<JwtDTO> authenticateUser(@RequestBody LoginDTO loginDTO) {
+    public ResponseEntity<JwtDTO> authenticate(@RequestBody LoginDTO loginDTO) {
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_CLASS + Constants.LOG_KEY_METHOD ,
+                Constants.LOG_MSG_START_AUTHENTICATE_USER, Constants.LOG_CLASS_USER_CONTROLLER, Constants.LOG_METHOD_AUTHENTICATE);
+
         return ResponseEntity.ok(usuarioService.authenticate(loginDTO));
     }
 }

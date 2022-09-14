@@ -2,11 +2,15 @@ package br.com.desafio.serasaexperian.domain.dto.pessoa;
 
 import br.com.desafio.serasaexperian.domain.enums.UF;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.*;
 
 import java.util.Set;
 
 @Data
+@Builder
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class PessoaGetByIdDTO {
 
     @ApiModelProperty(value = "nome da pessoa", required = true, position = 1)

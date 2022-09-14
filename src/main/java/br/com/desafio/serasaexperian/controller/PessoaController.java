@@ -35,10 +35,14 @@ public class PessoaController {
             @ApiResponse(code = Constants.STATUS_CODE_UNAUTHORIZED, message = Constants.API_RESPONSE_UNAUTHORIZED),
             @ApiResponse(code = Constants.STATUS_CODE_INTERNAL_ERROR_SERVER, message = Constants.API_RESPONSE_INTERNAL_ERROR_SERVER)
     })
-    @ApiOperation(value = "Cadastra uma pessoa")
+    @ApiOperation(value = "Cadastra uma nova pessoa")
     public ResponseEntity<PessoaDTO> create(@Valid @RequestBody PessoaDTO pessoaDTO) {
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_CLASS + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_ENTITY,
+                Constants.LOG_MSG_START_CREATE_PERSON, Constants.LOG_CLASS_PERSON_CONTROLLER, Constants.LOG_METHOD_CREATE, pessoaDTO);
+
         return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
                 .buildAndExpand(pessoaDTO).toUri()).body(pessoaService.create(pessoaDTO));
+
     }
 
     @GetMapping
@@ -50,6 +54,9 @@ public class PessoaController {
             @ApiResponse(code = Constants.STATUS_CODE_INTERNAL_ERROR_SERVER, message = Constants.API_RESPONSE_INTERNAL_ERROR_SERVER)
     })
     public ResponseEntity<List<PessoaGetAllDTO>> findAll() {
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_CLASS + Constants.LOG_KEY_METHOD,
+                Constants.LOG_MSG_START_CREATE_PERSON,Constants.LOG_CLASS_PERSON_CONTROLLER, Constants.LOG_METHOD_FIND_ALL);
+
         return ResponseEntity.ok().body(pessoaService.findAll());
     }
 
@@ -62,6 +69,9 @@ public class PessoaController {
             @ApiResponse(code = Constants.STATUS_CODE_INTERNAL_ERROR_SERVER, message = Constants.API_RESPONSE_INTERNAL_ERROR_SERVER)
     })
     public ResponseEntity<PessoaGetByIdDTO> findById(@PathVariable Long id) {
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_CLASS + Constants.LOG_KEY_METHOD,
+                Constants.LOG_MSG_FIND_BY_ID_PERSON + id, Constants.LOG_CLASS_PERSON_CONTROLLER, Constants.LOG_METHOD_FIND_BY_ID);
+
         return ResponseEntity.ok().body(pessoaService.findById(id));
     }
 }
