@@ -3,11 +3,17 @@ package br.com.desafio.serasaexperian.factory;
 import br.com.desafio.serasaexperian.domain.Afinidade;
 import br.com.desafio.serasaexperian.domain.Pessoa;
 import br.com.desafio.serasaexperian.domain.Score;
+import br.com.desafio.serasaexperian.domain.Usuario;
 import br.com.desafio.serasaexperian.domain.dto.afinidade.AfinidadeDTO;
 import br.com.desafio.serasaexperian.domain.dto.pessoa.PessoaDTO;
 import br.com.desafio.serasaexperian.domain.dto.pessoa.PessoaGetAllDTO;
 import br.com.desafio.serasaexperian.domain.dto.pessoa.PessoaGetByIdDTO;
 import br.com.desafio.serasaexperian.domain.dto.score.ScoreDTO;
+import br.com.desafio.serasaexperian.domain.dto.usuario.JwtDTO;
+import br.com.desafio.serasaexperian.domain.dto.usuario.LoginDTO;
+import br.com.desafio.serasaexperian.domain.dto.usuario.SignupDTO;
+import br.com.desafio.serasaexperian.domain.dto.usuario.UserDTO;
+import br.com.desafio.serasaexperian.domain.enums.Perfil;
 import br.com.desafio.serasaexperian.domain.enums.Regiao;
 import br.com.desafio.serasaexperian.domain.enums.UF;
 import br.com.desafio.serasaexperian.util.Constants;
@@ -27,7 +33,11 @@ public class ScenarioFactory {
     protected static ScoreDTO SCORE_DTO;
     protected static Afinidade AFINIDADE;
     protected static AfinidadeDTO AFINIDADE_DTO;
-
+    protected static String TOKEN_JWT;
+    protected static LoginDTO LOGIN_DTO;
+    protected static SignupDTO SIGNUP_DTO;
+    protected static UserDTO USER_DTO;
+    protected static Usuario USUARIO;
     protected RuntimeException EXCEPTION = new RuntimeException(Constants.MESSAGE_INVALID_DATA);
     public ScoreDTO getScoreDTO(){
         return ScoreDTO.builder()
@@ -101,6 +111,41 @@ public class ScenarioFactory {
                 .idade(37)
                 .scoreDescricao(SCORE_DTO.getScoreDescricao())
                 .estados(AFINIDADE_DTO.getEstados())
+                .build();
+    }
+
+    public String getToken() {
+        return "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyb2RyQG1zbi5jb20iLCJpYXQiOjE2NjI4MTY4NTcsImV4cCI6MTY2MzQyMTY1N30.kGnCybK5CHVYImW2_aajgTLFQBEJ5ellfH7Uq325Mz52eMfvQ9sj9pB0O8GXm6wjqyFT6DhczaaSFdCpnEdtMg";
+    }
+
+    public LoginDTO getLoginDTO() {
+        return LoginDTO.builder()
+                .email("rodrigo@msn.com")
+                .senha("123Aa$Ba")
+                .build();
+    }
+
+    public SignupDTO getSignupDTO() {
+        return SignupDTO.builder()
+                .nome("Rodrigo da Cruz")
+                .email("rodrigo@msn.com")
+                .senha("123Aa$Ba")
+                .build();
+    }
+
+    public UserDTO getUserDTO() {
+        return UserDTO.builder()
+                .nome("Rodrigo da Cruz")
+                .email("rodrigo@msn.com")
+                .perfis(Set.of(br.com.desafio.serasaexperian.domain.Perfil.builder().nome(String.valueOf(Perfil.ROLE_USER)).build()))
+                .build();
+    }
+
+    public Usuario getUsuario() {
+        return Usuario.builder()
+                .nome("Rodrigo da Cruz")
+                .email("rodrigo@msn.com")
+                .senha("123Aa$Ba")
                 .build();
     }
 }
