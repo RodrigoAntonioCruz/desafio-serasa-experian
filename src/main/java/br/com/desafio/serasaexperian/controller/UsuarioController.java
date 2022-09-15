@@ -33,7 +33,7 @@ public class UsuarioController {
 
     @PostMapping("/registrar")
     @ApiResponses(value = {
-            @ApiResponse(code = Constants.STATUS_CODE_OK, message = Constants.API_RESPONSE_OK),
+            @ApiResponse(code = Constants.STATUS_CODE_CREATED, message = Constants.API_RESPONSE_CREATED),
             @ApiResponse(code = Constants.STATUS_CODE_BAD_REQUEST, message = Constants.API_RESPONSE_BAD_REQUEST),
             @ApiResponse(code = Constants.STATUS_CODE_UNAUTHORIZED, message = Constants.API_RESPONSE_UNAUTHORIZED),
             @ApiResponse(code = Constants.STATUS_CODE_INTERNAL_ERROR_SERVER, message = Constants.API_RESPONSE_INTERNAL_ERROR_SERVER)
@@ -48,7 +48,7 @@ public class UsuarioController {
 
     @PostMapping("/login")
     @ApiResponses(value = {
-            @ApiResponse(code = Constants.STATUS_CODE_CREATED, message = Constants.API_RESPONSE_CREATED),
+            @ApiResponse(code = Constants.STATUS_CODE_OK, message = Constants.API_RESPONSE_OK),
             @ApiResponse(code = Constants.STATUS_CODE_BAD_REQUEST, message = Constants.API_RESPONSE_BAD_REQUEST),
             @ApiResponse(code = Constants.STATUS_CODE_UNAUTHORIZED, message = Constants.API_RESPONSE_UNAUTHORIZED),
             @ApiResponse(code = Constants.STATUS_CODE_INTERNAL_ERROR_SERVER, message = Constants.API_RESPONSE_INTERNAL_ERROR_SERVER)
