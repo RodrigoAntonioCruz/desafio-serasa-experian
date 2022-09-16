@@ -9,7 +9,6 @@ import br.com.desafio.serasaexperian.domain.dto.pessoa.PessoaDTO;
 import br.com.desafio.serasaexperian.domain.dto.pessoa.PessoaGetAllDTO;
 import br.com.desafio.serasaexperian.domain.dto.pessoa.PessoaGetByIdDTO;
 import br.com.desafio.serasaexperian.domain.dto.score.ScoreDTO;
-import br.com.desafio.serasaexperian.domain.dto.usuario.JwtDTO;
 import br.com.desafio.serasaexperian.domain.dto.usuario.LoginDTO;
 import br.com.desafio.serasaexperian.domain.dto.usuario.SignupDTO;
 import br.com.desafio.serasaexperian.domain.dto.usuario.UserDTO;
@@ -39,6 +38,7 @@ public class ScenarioFactory {
     protected static UserDTO USER_DTO;
     protected static Usuario USUARIO;
     protected RuntimeException EXCEPTION = new RuntimeException(Constants.MESSAGE_INVALID_DATA);
+
     public ScoreDTO getScoreDTO(){
         return ScoreDTO.builder()
                 .scoreDescricao("Inaceitável")

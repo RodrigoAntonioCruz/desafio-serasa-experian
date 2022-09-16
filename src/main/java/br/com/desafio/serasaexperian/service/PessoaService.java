@@ -29,8 +29,7 @@ public class PessoaService {
     private final PessoaRepository pessoaRepository;
 
     public PessoaDTO create(PessoaDTO pessoaDTO) {
-        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_CLASS + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_ENTITY,
-                Constants.LOG_MSG_START_CREATE_PERSON, Constants.LOG_CLASS_PERSON_SERVICE, Constants.LOG_METHOD_CREATE, pessoaDTO);
+        log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_ENTITY, Constants.LOG_MSG_START_CREATE_PERSON, Constants.LOG_METHOD_CREATE, pessoaDTO);
 
         var pessoa = mapper.map(pessoaDTO, Pessoa.class);
 
