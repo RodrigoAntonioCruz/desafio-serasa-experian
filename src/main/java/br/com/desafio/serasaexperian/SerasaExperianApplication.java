@@ -1,5 +1,6 @@
 package br.com.desafio.serasaexperian;
 
+import br.com.desafio.serasaexperian.configuration.EnvironmentConfiguration;
 import br.com.desafio.serasaexperian.domain.dto.score.ScoreDTO;
 import br.com.desafio.serasaexperian.domain.dto.usuario.SignupDTO;
 import br.com.desafio.serasaexperian.http.ScoreClient;
@@ -17,6 +18,9 @@ import java.util.List;
 public class SerasaExperianApplication implements CommandLineRunner {
 
 	@Autowired
+	private EnvironmentConfiguration env;
+
+	@Autowired
 	private ScoreClient scoreClient;
 
 	@Autowired
@@ -29,7 +33,7 @@ public class SerasaExperianApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		var user = SignupDTO.builder().nome("Api User").email("api@msn.com").senha("123Aa$Aa").build();
+		var user = SignupDTO.builder().nome("Api User").email(env.getApiUser()).senha(env.getApiSecret()).build();
         usuarioClient.insertUsuario(user);
 
 		var scores = List.of(ScoreDTO.builder().scoreDescricao("Insuficiente").valorInicial(0).valorFinal(200).build(),

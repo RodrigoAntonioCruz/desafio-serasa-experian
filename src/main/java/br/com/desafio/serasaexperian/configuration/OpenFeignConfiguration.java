@@ -10,13 +10,14 @@ import org.springframework.http.HttpHeaders;
 
 @AllArgsConstructor
 public class OpenFeignConfiguration implements RequestInterceptor {
+    private final EnvironmentConfiguration env;
     private final AuthenticateProvider authenticateProvider;
     @Override
     public void apply(RequestTemplate template) {
 
         final String authorization = HttpHeaders.AUTHORIZATION;
 
-        var login = LoginDTO.builder().email("api@msn.com").senha("123Aa$Aa").build();
+        var login = LoginDTO.builder().email(env.getApiUser()).senha(env.getApiSecret()).build();
 
         String token = authenticateProvider.getToken(login).getToken();
 

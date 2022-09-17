@@ -5,8 +5,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "usuario", url = "http://localhost:8887/api/v1/usuario/registrar")
+@FeignClient(name = "usuario", url = "${uri.api.user}")
 public interface UsuarioClient {
     @PostMapping
-    SignupDTO insertUsuario(@RequestBody SignupDTO signupDTO);
+    void insertUsuario(@RequestBody SignupDTO signupDTO);
 }

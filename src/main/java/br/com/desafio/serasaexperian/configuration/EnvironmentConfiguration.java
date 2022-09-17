@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "configuration")
 public class EnvironmentConfiguration {
+    private String apiUser;
+    private String apiSecret;
 
     private int jwtTimeExpiration;
     private String jwtSecret;

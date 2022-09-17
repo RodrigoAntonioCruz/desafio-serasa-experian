@@ -6,9 +6,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "score", url = "http://localhost:8887/api/v1/score", configuration = OpenFeignConfiguration.class)
+@FeignClient(name = "score", url = "${uri.api.score}", configuration = OpenFeignConfiguration.class)
 public interface ScoreClient {
     @PostMapping
-    ScoreDTO insertScore(@RequestBody ScoreDTO scoreDTO);
-
+    void insertScore(@RequestBody ScoreDTO scoreDTO);
 }
