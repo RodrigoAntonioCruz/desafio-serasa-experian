@@ -33,6 +33,6 @@ public class ScoreService {
     public String getDescriptionScore(Integer score) {
         log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_SCORE, Constants.LOG_MSG_GET_SCORE_DESCRIPTION, Constants.LOG_METHOD_GET_SCORE_DESCRIPTION, score);
 
-       return scoreRepository.findScoreBetweenInitialAndFinalValue(score).get().getDescricao();
+        return scoreRepository.findScoreBetweenInitialAndFinalValue(score).map(Score::getDescricao).orElse(Constants.MESSAGE_SCORE_UNDEFINED);
     }
 }

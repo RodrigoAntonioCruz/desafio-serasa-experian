@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.Set;
 
 @Slf4j
@@ -35,6 +36,6 @@ public class AfinidadeService {
     public Set<UF> findStatesAffinityByRegion(Regiao regiao) {
         log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_REGION, Constants.LOG_MSG_FIND_STATE_REGION, Constants.LOG_METHOD_FIND_STATE_REGION, regiao);
 
-        return  afinidadeRepository.findAffinityByRegion(regiao).get().getEstados();
+        return afinidadeRepository.findAffinityByRegion(regiao).map(Afinidade::getEstados).orElse(Collections.emptySet());
     }
 }

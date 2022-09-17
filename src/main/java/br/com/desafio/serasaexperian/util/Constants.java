@@ -166,9 +166,8 @@ public class Constants {
     public static final String MESSAGE_UNSUPPORTED_JWT_TOKEN = "Token JWT não suportado";
     public static final String MESSAGE_EMPTY_JWT_TOKEN = "String JWT está vazia";
     public static final String MESSAGE_INVALID_DATA = "Dados não processados";
+    public static final String MESSAGE_SCORE_UNDEFINED = "Score indefinido";
     public static final String MESSAGE_INVALID_PASSWORD = "A senha deve conter pelo menos um caractere minúsculo um caractere maiúsculo um dígito um caractere especial e um comprimento entre 8 e 20";
     public static final String MESSAGE_NOT_FOUND_STATES_AFFINITY_BY_REGION = "Estados de affindade por região não encontrados";
     public static final String MESSAGE_NOT_FOUND_SCORE_DESCRIPTION = "Score não encontrado";
-
-
 }
