@@ -40,7 +40,7 @@ public class AfinidadeServiceTest  extends ScenarioFactory {
 
         when(mapper.map(AFINIDADE_DTO, Afinidade.class)).thenReturn(AFINIDADE);
 
-        when(afinidadeRepository.findAffinityByRegion(Regiao.SUDESTE)).thenReturn(Optional.of(AFINIDADE));
+        when(afinidadeRepository.findByRegiao(Regiao.SUDESTE)).thenReturn(Optional.of(AFINIDADE));
     }
 
     @Test
@@ -60,7 +60,7 @@ public class AfinidadeServiceTest  extends ScenarioFactory {
 
         var estados = afinidadeService.findStatesAffinityByRegion(AFINIDADE.getRegiao());
 
-        verify(afinidadeRepository, times(1)).findAffinityByRegion(Regiao.SUDESTE);
+        verify(afinidadeRepository, times(1)).findByRegiao(Regiao.SUDESTE);
 
         assertEquals(estados, Set.of(UF.RJ, UF.SP, UF.MG, UF.ES));
 

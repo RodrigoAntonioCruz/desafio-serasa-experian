@@ -36,6 +36,6 @@ public class AfinidadeService {
     public Set<UF> findStatesAffinityByRegion(Regiao regiao) {
         log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_REGION, Constants.LOG_MSG_FIND_STATE_REGION, Constants.LOG_METHOD_FIND_STATE_REGION, regiao);
 
-        return afinidadeRepository.findAffinityByRegion(regiao).map(Afinidade::getEstados).orElse(Collections.emptySet());
+        return afinidadeRepository.findByRegiao(regiao).map(Afinidade::getEstados).orElse(Collections.emptySet());
     }
 }

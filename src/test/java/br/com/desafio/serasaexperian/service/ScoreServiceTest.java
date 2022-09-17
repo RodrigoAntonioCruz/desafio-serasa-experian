@@ -36,7 +36,7 @@ public class ScoreServiceTest  extends ScenarioFactory {
 
         when(mapper.map(SCORE_DTO, Score.class)).thenReturn(SCORE);
 
-        when(scoreRepository.findScoreBetweenInitialAndFinalValue(1)).thenReturn(Optional.of(SCORE));
+        when(scoreRepository.findByScoreDescription(1)).thenReturn(Optional.of(SCORE));
     }
 
     @Test
@@ -57,7 +57,7 @@ public class ScoreServiceTest  extends ScenarioFactory {
 
         var score = scoreService.getDescriptionScore(1);
 
-        verify(scoreRepository, times(1)).findScoreBetweenInitialAndFinalValue(1);
+        verify(scoreRepository, times(1)).findByScoreDescription(1);
 
         assertEquals(score, SCORE_DTO.getScoreDescricao());
     }
