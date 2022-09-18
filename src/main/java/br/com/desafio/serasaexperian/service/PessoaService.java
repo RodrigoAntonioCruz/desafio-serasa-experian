@@ -65,7 +65,7 @@ public class PessoaService {
     }
 
     private String getScore(Pessoa pessoa) {
-        return scoreService.getDescriptionScore(pessoa.getScore());
+        return scoreService.findDescriptionByScore(pessoa.getScore());
     }
 
     private Set<UF> getRegion(Pessoa pessoa) {

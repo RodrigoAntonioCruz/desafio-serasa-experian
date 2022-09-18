@@ -36,7 +36,7 @@ public class ScoreServiceTest  extends ScenarioFactory {
 
         when(mapper.map(SCORE_DTO, Score.class)).thenReturn(SCORE);
 
-        when(scoreRepository.findByScoreDescription(1)).thenReturn(Optional.of(SCORE));
+        when(scoreRepository.findDescriptionByScore(1)).thenReturn(Optional.of(SCORE));
     }
 
     @Test
@@ -55,9 +55,9 @@ public class ScoreServiceTest  extends ScenarioFactory {
     @DisplayName("Testa a busca da descrição por score com sucesso")
     public void when_getDescriptionScore_return_success(){
 
-        var score = scoreService.getDescriptionScore(1);
+        var score = scoreService.findDescriptionByScore(1);
 
-        verify(scoreRepository, times(1)).findByScoreDescription(1);
+        verify(scoreRepository, times(1)).findDescriptionByScore(1);
 
         assertEquals(score, SCORE_DTO.getScoreDescricao());
     }

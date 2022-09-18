@@ -8,8 +8,8 @@ import java.util.Optional;
 
 @Repository
 public interface ScoreRepository extends JpaRepository<Score, Long> {
-    Optional<Score> findScoreByValorFinalGreaterThanEqualAndValorInicialLessThanEqual(Integer valorInicial, Integer valorFinal);
-    default Optional<Score> findByScoreDescription(Integer scoreValue){
-        return findScoreByValorFinalGreaterThanEqualAndValorInicialLessThanEqual(scoreValue, scoreValue);
+    Optional<Score> findAllByValorFinalGreaterThanEqualAndValorInicialLessThanEqual(Integer valorInicial, Integer valorFinal);
+    default Optional<Score> findDescriptionByScore(Integer scoreValue){
+        return findAllByValorFinalGreaterThanEqualAndValorInicialLessThanEqual(scoreValue, scoreValue);
     }
 }

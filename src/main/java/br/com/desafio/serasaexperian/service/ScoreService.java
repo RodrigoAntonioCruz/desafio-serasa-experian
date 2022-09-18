@@ -30,9 +30,9 @@ public class ScoreService {
         return result;
     }
 
-    public String getDescriptionScore(Integer score) {
+    public String findDescriptionByScore(Integer score) {
         log.info(Constants.LOG_KEY_MESSAGE + Constants.LOG_KEY_METHOD + Constants.LOG_KEY_SCORE, Constants.LOG_MSG_GET_SCORE_DESCRIPTION, Constants.LOG_METHOD_GET_SCORE_DESCRIPTION, score);
 
-        return scoreRepository.findByScoreDescription(score).map(Score::getDescricao).orElse(Constants.MESSAGE_SCORE_UNDEFINED);
+        return scoreRepository.findDescriptionByScore(score).map(Score::getDescricao).orElse(Constants.MESSAGE_SCORE_UNDEFINED);
     }
 }
